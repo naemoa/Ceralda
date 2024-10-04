@@ -5,17 +5,7 @@ import os
 import re
 app = Flask(__name__)
 
-# Sample data for widgets
-widgets = [
-    {
-        "id": "popup-widget",
-        "url": "https://widgetapp-531000083b96.herokuapp.com/widget/popup-widget.js"
-    },
-    {
-        "id": "another-popup-widget",
-        "url": "https://widgetapp-531000083b96.herokuapp.com/widget/popup-widget1.js"
-    }
-]
+
 
 # Directory to store generated JavaScript files
 js_files_dir = os.path.join(app.root_path, 'generated_js')
@@ -55,10 +45,6 @@ def read_general_css():
     return css_content
 
 
-@app.route('/api/widgets', methods=['GET'])
-def get_widgets():
-    return jsonify(widgets)
-
 @app.route('/popup')
 def popup():
     website_url = request.args.get('websiteURL')
@@ -95,13 +81,13 @@ def profile():
 def editor():
     return render_template('editor.html', title='Editor')
 
-@app.route('/sign-in')
-def sign_in():
-    return render_template('sign-in.html', title='Sign In')
+@app.route('/login')
+def login():
+    return render_template('login.html', title='Login')
 
-@app.route('/sign-up')
-def sign_up():
-    return render_template('sign-up.html', title='Sign Up')
+@app.route('/register')
+def register():
+    return render_template('register.html', title='Register')
 
 # @app.route('/generated_js/<path:path>')
 # def send_js(path):
